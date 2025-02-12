@@ -1,0 +1,4 @@
+#build folder 
+app.dSYM
+#exec file
+app
