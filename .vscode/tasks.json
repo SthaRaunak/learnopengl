@@ -3,8 +3,8 @@
   "tasks": [
     {
       "type": "cppbuild",
-      "label": "C/C++: clang build active file",
-      "command": "/usr/bin/clang",
+      "label": "C/C++:  build active file",
+      "command": "/usr/bin/g++",
       "args": [
         "-std=c++17",
         "-fcolor-diagnostics",
@@ -17,9 +17,9 @@
         "-L${workspaceFolder}/dependencies/library",
         // "${workspaceFolder}/dependencies/library/libglfw.3.4.dylib",
         "-lglfw", // Link GLFW library
-        "-lc++", // Link with the C++ standard library
-        "${workspaceFolder}/main.cpp", // Source files
-        "${workspaceFolder}/glad.cpp",
+        //"-lc++", // Link with the C++ standard library
+        "${workspaceFolder}/*.cpp", // Source files
+        "${workspaceFolder}/glad.c",
         "-o",
         "${workspaceFolder}/app", // Output executable
         "-framework",
