@@ -5,22 +5,6 @@
 #include "VAO.hpp"
 #include "shaders.hpp"
 
-// Vertices coordinates
-
-// GLfloat vertices[] = {
-//     -0.5f,
-//     -0.5f,
-//     0.0f,             // left
-//     1.0f, 0.0f, 0.0f, // red
-//     0.5f,
-//     -0.5f,
-//     0.0f,             // right
-//     0.0f, 1.0f, 0.0f, // green
-//     0.0f,
-//     0.5f,
-//     0.0f,            // top
-//     0.0f, 0.0f, 1.0f // blue
-// };
 GLfloat vertices[] = {
     -0.5f,
     -0.5f,
@@ -32,6 +16,13 @@ GLfloat vertices[] = {
     0.5f,
     0.0f, // top
 };
+
+GLuint indices[] = {
+    0, 3, 5, // Lower left triangle
+    3, 2, 4, // Lower  right triangle
+    5, 4, 1  // Upper Triangle
+};
+
 int main()
 {
     glfwInit();
@@ -57,15 +48,16 @@ int main()
 
     glViewport(0, 0, 800, 600);
 
+    // load the shaders :  just read the shader files then compile them and link them to program then store that reference to program object in ID delete the shaders
     Shader shaderProgram("ResourceFiles/Shaders/default.vert", "ResourceFiles/Shaders/default.frag");
 
     VAO VAO1;
     VAO1.Bind();
 
-    // Generates Vetrx BUffer Object and links it to veritices
+    // Generates Veretex buffer object and links it to veritices
     VBO VBO1(vertices, sizeof(vertices));
 
-    VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 6 * sizeof(float), (void *)0);
+    VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 3 * sizeof(float), (void *)0);
 
     // Unbind all to prevent accidentally modifying them
     VBO1.Unbind();
